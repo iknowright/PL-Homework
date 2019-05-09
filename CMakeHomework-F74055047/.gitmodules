@@ -1,0 +1,6 @@
+[submodule "ext/fmt"]
+	path = ext/fmt
+	url = https://github.com/fmtlib/fmt
+[submodule "ext/nana"]
+	path = ext/nana
+	url = https://github.com/cnjinhao/nana
