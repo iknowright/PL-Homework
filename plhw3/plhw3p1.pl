@@ -15,13 +15,15 @@ is_prime(Number, P):-
     P = Y.
 
 conjecture(L, prime, R, prime):-
-    format("Output ~w ~w ~n", [L,R]).
+    L1 is L + 1,
+    R1 is R - 1,
+    format("Output: ~w ~w ~n", [L1,R1]).
 
 conjecture(L, _, R, _):-
+    is_prime(L, X),
+    is_prime(R, Y),
     L1 is L - 1,
     R1 is R + 1,
-    is_prime(L1, X),
-    is_prime(R1, Y),
     conjecture(L1, X, R1, Y).
 
 program:- program_loop.

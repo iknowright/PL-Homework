@@ -8,14 +8,14 @@ member(X,[X|_], success).
 member(_,[], fail).
 member(X,[_|T],A) :- member(X,T,A).
 
-common_ancester([root|_], _).
-common_ancester([H|T], L2):-
+common_ancestor([root|_], _).
+common_ancestor([H|T], L2):-
     member(H, L2, X),
     X = success
     ->
     writeln(H)
     ;
-    common_ancester(T, L2).
+    common_ancestor(T, L2).
 
 parents(Temp, Result, root):-
     Result = Temp.
@@ -60,7 +60,7 @@ output([]).
 output([H|T]):-
     parse_pair(H, A, B),
     get_lists(A1, A2 , A, B),
-    common_ancester(A1, A2),
+    common_ancestor(A1, A2),
     output(T).
 
 program:-
