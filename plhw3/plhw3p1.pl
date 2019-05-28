@@ -14,17 +14,22 @@ is_prime(Number, P):-
     loop_divisor(N,Number, 100, Y),
     P = Y.
 
-conjecture(L, prime, R, prime):-
-    L1 is L + 1,
-    R1 is R - 1,
-    format("Output: ~w ~w ~n", [L1,R1]).
+pair(_, prime, _, not_prime).
+pair(_, not_prime, _, prime).
+pair(_, not_prime, _, not_prime).
 
-conjecture(L, _, R, _):-
+pair(X, prime, Y, prime):-
+    format("Output: ~w ~w ~n", [X, Y]).
+
+conjecture(2, _).
+
+conjecture(L, R):-
     is_prime(L, X),
     is_prime(R, Y),
+    pair(L, X, R, Y),
     L1 is L - 1,
     R1 is R + 1,
-    conjecture(L1, X, R1, Y).
+    conjecture(L1,R1).
 
 program:- program_loop.
 
@@ -33,7 +38,7 @@ program_loop:-
     readln(X),
     [Number|_] = X,
     Y is div(Number,2),
-    conjecture(Y, not_prime, Y, not_prime),
+    conjecture(Y, Y),
     program_loop.
 
 main:-
